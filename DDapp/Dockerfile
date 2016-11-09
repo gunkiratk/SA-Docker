@@ -1,9 +1,5 @@
-FROM django
+FROM django:onbuild
 
-ADD . /staticsite
+EXPOSE 8000
 
-WORKDIR /staticsite
-
-RUN pip3 install -r requirements.txt
-
-CMD [ "python3", "./manage.py runserver"]
+CMD ["python3", "manage.py", "runserver"]
