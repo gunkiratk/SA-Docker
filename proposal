@@ -1,0 +1,25 @@
+Group ID : 113 (2015032^2015049)
+
+Group Members : 
+2015032, Gunkirat Kaur, gunkirat15032@iiitd.ac.in
+2015049, Kushagra Arora, kushagra15049@iiitd.ac.in
+
+Objectives :
+Hosting multiple wordpresss applications using docker on lamp servers and creating a website with google authenticaton using php.
+    
+Softwares to be installed :
+docker-engine
+containers : for apache2, php, mysql
+Google oAuth API
+
+Test Cases:
+site-url | Website home page
+on our website - 
+login using google authentication | redirect to website
+
+Milstones : 
+1|  To install docker-engine and pull containers for running lamp stack|    6-Oct-2016
+2| To deploy existing websites hosted on lamp stack on docker|  13-Oct-2016
+3| To create a simple website using php with google authentication | 28-Oct-2016
+4| Adding functionalities on the website - making it a simple utility for IIITD students| 11-Nov-2016
+5| Finishing touches 
