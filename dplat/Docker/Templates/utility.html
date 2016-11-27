@@ -4,7 +4,12 @@
 	</title>
 </head>
 <body>
-	<p>{{username}}</p>
-	<p> logged in</p>
+	<form action="/docker/run" method="POST">
+	{%csrf_token%}
+	<input value="run Container" type="Submit"><br><br>
+<form action="/docker/view" method="POST">
+	{%csrf_token%}
+	<input value="view list of Container" type="Submit"><br><br>
+</form>
 </body>
 </html>
