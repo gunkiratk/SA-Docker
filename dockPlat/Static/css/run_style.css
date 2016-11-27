@@ -3,7 +3,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #191970;
 }
 
 li {
@@ -22,7 +22,7 @@ li a {
 input[type=text],
    input[type=password], {
   color:#fff;
-  background: #000000; /* Old browsers */
+  background: #A9A9A9; /* Old browsers */
   width:250px;
   height:40px;
   margin: 0 auto 10px auto;
@@ -74,7 +74,7 @@ h3
         margin-top: 3em;
     }
     .form1 {
-        background: rgba(0, 0 , 0, 0.60) no-repeat center center fixed;
+        background: rgba(192, 192 , 192, 0.30) no-repeat center center fixed;
         width:300px;
         /*opacity:0.5;
         /*height:50%*/
