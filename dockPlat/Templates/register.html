@@ -1,0 +1,39 @@
+<html>
+<head>
+	<title>
+	</title>
+</head>
+<body bgcolor="#ffffff">
+	<ul>
+ <li><a href="{% url 'Login' %}">Login</a></li>
+  </ul>
+	<h1>SignUp</h1>
+	<!-- <hr> -->
+	<link rel="stylesheet" href="register_style.css" >
+	<div class="center">
+	<div class="form1">
+	<form action="/docker/register" method="POST">
+		<div class="input">
+	<br>
+	<h3>Username</h3>
+	<input name="Username" type="text"><br>
+	<h3>Name</h3>
+	<input name="Name" type="text"><br>
+	<h3>Email</h3>
+	<input name="Email" type="email"><br>
+	<h3>Password</h3>
+	<input name="Password" type="text"><br><br>
+
+</div>
+<div class="submit">
+	<input name="Submit" type="Submit" value="Submit">
+	<br><br><br>
+
+</div>
+
+
+</form>
+</div>
+</div>
+</body>
+</html>
