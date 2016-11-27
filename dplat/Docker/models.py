@@ -1,20 +1,17 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django import forms
+from django.contrib.auth.models import User
 
-
-# Create your models here.
-class Name_pass(models.Model):
-	name=models.CharField(max_length=128)
-	password=models.CharField(max_length=128)
-	username=models.CharField(max_length=128)
 
 class Container(models.Model):
-	Cname=models.ForeignKey(
-        'Name_pass',
-        on_delete=models.CASCADE,
-    max_length=128)	
+	user = User.objects.get(username='gunkirat1')
+	author=models.ForeignKey(User, default=user)
+	c_name = models.CharField(max_length=150, unique=True, null=True)
+	image_id = models.CharField(max_length=150, unique=True, null=True)
+
+	def __str__(self):
+		return str(self.c_name)
 
 
 
