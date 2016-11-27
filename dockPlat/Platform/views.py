@@ -140,7 +140,7 @@ def register_user(request):
 @login_required
 def logout_user(request):
 	logout(request)
-	return redirect("login_user")
+	return redirect('login')
 
 
 @login_required
