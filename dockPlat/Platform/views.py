@@ -81,7 +81,7 @@ def view_containers(request):
 		verbose_running_list.append(disp_dict)
 
 	context = {'user':current_user.first_name, 'all':verbose_all_list, 'exited':verbose_exited_list, 'running':verbose_running_list}
-	return render(request, 'home.html', context)
+	return render(request, 'view.html', context)
 
 
 def register_user(request):
@@ -132,6 +132,7 @@ def run_container(request):
 		c.user = current_user
 		c.save()
 		return redirect("dashboard")
+	return render(request, 'run.html')
 
 
 
