@@ -8,6 +8,7 @@ from django import forms
 class Name_pass(models.Model):
 	name=models.CharField(max_length=128)
 	password=models.CharField(max_length=128)
+	username=models.CharField(max_length=128)
 
 class Container(models.Model):
 	Cname=models.ForeignKey(
