@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <html>
 <head>
 	<title>
@@ -5,14 +7,14 @@
 </head>
 <body bgcolor="#ffffff">
 	<ul>
- <li><a href="{% url 'Login' %}">Login</a></li>
+ <li><a href="{% url 'login' %}">Login</a></li>
   </ul>
 	<h1>SignUp</h1>
 	<!-- <hr> -->
-	<link rel="stylesheet" href="register_style.css" >
+	<link rel="stylesheet" href='{% static "css/register_style.css" %}' >
 	<div class="center">
 	<div class="form1">
-	<form action="/docker/register" method="POST">
+	<form action="#" method="POST">
 		<div class="input">
 	<br>
 	<h3>Username</h3>
