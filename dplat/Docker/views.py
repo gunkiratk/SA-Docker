@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from models import Name_pass,Container
-from 
+from . import models
+
 def home_page(request):
 	return render(request,"register.html",{})
 def register(request):

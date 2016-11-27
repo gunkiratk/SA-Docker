@@ -1,0 +1,18 @@
+<html>
+<head>
+	<title>
+	</title>
+</head>
+<body>
+
+	<form action="/docker/register" method="POST">
+	{%csrf_token%}
+	<p>Username</p>
+	<input name="name" type="text"><br><br>
+	<p>Password</p>
+	<input name="password" type="text"><br><br>
+	<input type="Submit" value="Submit">
+
+</form>
+</body>
+</html>
