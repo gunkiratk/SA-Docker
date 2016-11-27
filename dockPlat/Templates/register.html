@@ -15,16 +15,17 @@
 	<div class="center">
 	<div class="form1">
 	<form action="#" method="POST">
+	{% csrf_token %}
 		<div class="input">
 	<br>
 	<h3>Username</h3>
-	<input name="Username" type="text"><br>
+	<input name="username" type="text"><br>
 	<h3>Name</h3>
-	<input name="Name" type="text"><br>
+	<input name="name" type="text"><br>
 	<h3>Email</h3>
-	<input name="Email" type="email"><br>
+	<input name="email" type="email"><br>
 	<h3>Password</h3>
-	<input name="Password" type="text"><br><br>
+	<input name="password" type="password"><br><br>
 
 </div>
 <div class="submit">

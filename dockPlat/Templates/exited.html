@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<html>
+<head>
+	</head>
+	<body>
+<link rel="stylesheet" href='{% static "css/view_style.css" %}'>
+	<ul>
+  <li><a>Welcome {{user}}</a></li>
+  </ul>
+  <div class="form">
+  <form action='{% url "all" %}' method="POST" name="form1">
+	{%csrf_token%}
+	<br>
+	<input value="All" type="Submit" name="All">
+	</form>
+<form action='{% url "exited" %}' method="POST" name="form2">
+	{%csrf_token%}
+	<input value="Exited" type="Submit" name="exit">
+	</form>
+	<!-- <form action='{% url "running" %}' method="POST" name="form3"> -->
+	<!-- {%csrf_token%}
+	<input value="Running" type="Submit" name="run">
+</form> -->
+	<table>
+	
+		<tr>
+			<th> Container name </th>
+			<th> Status </th>
+			<th> Command </th>
+			<th> Ports </th>
+			<th> Image </th>
+		</tr>
+		{% for i in all %}
+		<tr>
+			<td> {{ i.Name }}</td>
+			<td> {{ i.Status }}</td>
+			<td> {{ i.Command }}</td>
+			<td> {{ i.Ports }}</td>
+			<td> {{ i.Image }}</td>
+		</tr>
+		{% endfor %}
+	</table>	
+
+</div>
+	</body>
+</html>

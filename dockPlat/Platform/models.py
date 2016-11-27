@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 
 class Container(models.Model):
 	author = models.ForeignKey(User)
-	c_name = models.CharField(max_length=150, unique=True, null=True)
-	image_id = models.CharField(max_length=150, unique=True, null=True)
+	c_name = models.CharField(max_length=150, null=True)
+	image_id = models.CharField(max_length=150, null=True)
 	image = models.CharField(max_length=150, null=True)
 
 	def __str__(self):

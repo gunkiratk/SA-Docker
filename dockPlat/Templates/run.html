@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <html>
 <head>
 	<title>
@@ -8,25 +9,30 @@
   <li><a>Welcome {{user}}</a></li>
   </ul>
 	
-	<link rel="stylesheet" href="run_style.css" >
+	<link rel="stylesheet" href='{% static "css/run_style.css" %}' >
 	<div class="center">
 	<div class="form1">
-	<form action="/docker/register" method="POST">
+	<form action="#" method="POST">
+	{% csrf_token %}		
 		<div class="input">
 	<br>
-	<h3>Conatiner Id</h3>
-	<input name="Container_id" type="text"><br>
+	<h3>Conatiner Name</h3>
+	<input name="name" type="text"><br>
 	<h3>Image</h3>
-	<input name="Image" type="text"><br><br>
+	<input name="image" type="text"><br><br>
 	<h3>Command</h3>
 	<h4>(if not mentioned in docker file)</h4>
-	<input name="Image" type="text"><br>
+	<input name="command" type="text"><br>
 </div>
 <div class="submit">
 	<input name="Run" type="Submit" value="Run">
 	<br><br><br>
 
 </div>
+
+	{% if error %}
+	<p>{{ error }}</p>
+	{% endif %}
 
 
 

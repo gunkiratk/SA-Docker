@@ -13,11 +13,21 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include 
 from django.contrib import admin
 from django.conf.urls.static import static
+from django.conf import settings
+from Platform import views
 
-urlpatterns = [
+urlpatterns=[
     url(r'^admin/', admin.site.urls),
-    url(r'^docker/',include('Platform.urls')),
+	url(r'^docker/$',views.login_user,name='login'),
+	url(r'^docker/register/$',views.register_user,name='register'),
+	url(r'^docker/dashboard/$',views.dashboard,name='dashboard'),
+	url(r'^docker/dashboard/run/$',views.run_container,name='run'),
+	url(r'^docker/dashboard/view/$',views.view_containers,name='view'),
+	url(r'^docker/logout/$',views.logout,name='logout'),
+	url(r'^docker/dashboard/view/all/$',views.view_all,name='all'),
+	url(r'^docker/dashboard/view/exited/$',views.view_exited,name='exited'),
+	url(r'^docker/dashboard/view/running/$',views.view_running,name='running'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

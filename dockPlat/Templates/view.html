@@ -1,23 +1,27 @@
+{% load staticfiles %}
 <html>
 <head>
 	</head>
 	<body>
-<link rel="stylesheet" href="view_style.css">
+<link rel="stylesheet" href='{% static "css/view_style.css" %}'>
 	<ul>
   <li><a>Welcome {{user}}</a></li>
   </ul>
   <div class="form">
-  <form action="" method="POST" name="form1">
+  <form action='{% url "all" %}' method="GET" name="form1">
 	{%csrf_token%}
 	<br>
 	<input value="All" type="Submit" name="All">
-<form action=""method="POST" name="form2">
-	<!-- {%csrf_token%} -->
+	</form>
+<form action='{% url "exited" %}' method="GET" name="form2">
+	{%csrf_token%}
 	<input value="Exited" type="Submit" name="exit">
-	<form action=""method="POST" name="form3">
-	<!-- {%csrf_token%} -->
-	<input value="Running" type="Submit" name="run">
-</form>
+	</form>
+
+	<!-- <form action='{% url "running" %}' method="GET" name="form3">
+	{%csrf_token%}
+	<input value="Running" type="Submit" name="run"> -->
+<!-- </form> -->
 
 </div>
 	</body>

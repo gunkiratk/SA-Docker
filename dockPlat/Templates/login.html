@@ -1,25 +1,26 @@
 {% load staticfiles %}
 <html>
 <head>
+	<link rel="stylesheet" href="{% static 'css/style_new.css' %}" type='text/css'>
 	<title>
 	</title>
 </head>
 <body >
 	<ul>
-  <li><a href="{% url 'register' %}">Sign up</a></li></li>
+  <li><a href='{% url "register" %}'>Sign up</a></li></li>
   </ul>
 	<h1>Login</h1>
 	<!-- <hr> -->
-	<link rel="stylesheet" href="style_new.css" >
 	<div class="center">
 	<div class="form1">
 	<form action="#" method="POST">
+	{% csrf_token %}
 		<div class="input">
 	<br>
 	<h3>Username</h3>
-	<input name="Username" type="text"><br>
+	<input name="username" type="text"><br>
 	<h3>Password</h3>
-	<input name="Password" type="text"><br><br>
+	<input name="password" type="password"><br><br>
 
 </div>
 <div class="submit">
