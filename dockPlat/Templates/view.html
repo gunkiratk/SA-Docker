@@ -5,10 +5,11 @@
 	<body>
 <link rel="stylesheet" href='{% static "css/view_style.css" %}'>
 	<ul>
-  <li><a>Welcome {{user}}</a></li>
+  <li><a href='{% url "dashboard" %}'>Welcome {{user}}</a></li>
   <li><a href='{% url "logout" %}'>Logout</a></li>
+  <li><a href='{% url "dashboard" %} '>Back</a></li>
   </ul>
-  
+
   <div class="form">
   <form action='{% url "all" %}' method="GET" name="form1">
 	{%csrf_token%}

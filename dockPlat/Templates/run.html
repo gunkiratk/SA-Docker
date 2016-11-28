@@ -7,12 +7,13 @@
 
 <body bgcolor="#C0C0C0">
 	<ul>
-  		<li><a>Welcome {{user}}</a></li>
+  		<li><a href='{% url "dashboard" %} ' >Welcome {{user}}</a></li>
   		<li><a class="logout" href='{% url "logout" %}'>Logout</a></li>
+  		<li><a href='{% url "dashboard" %} '>Back</a></li>
   	</ul>
 	
 	<div class="center">
-		<div class="form1">
+		<div class="form133">
 			<form action="#" method="POST">
 				{% csrf_token %}		
 				<div class="input">

@@ -201,7 +201,7 @@ def run_container(request):
 			# error = "This container name already exists"
 			# return render(request, 'run.html', {'error':error})
 
-	return render(request, 'run.html')
+	return render(request, 'run.html', {'user':current_user.first_name})
 
 
 @login_required	
