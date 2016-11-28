@@ -187,9 +187,9 @@ def run_container(request):
 		error = None
 		# try:
 		if(command) :
-			container = cli.create_container(image=image_name, command=command, name=container_name, detach=detach)
+			container = cli.create_container(image=image_name, command=command, name=container_name, detach=detach, ports=[8080], host_config = cli.create_host_config(port_bindings={8080: 4567}))
 		else:
-			container = cli.create_container(image=image_name, name=container_name, detach=detach)
+			container = cli.create_container(image=image_name, name=container_name, detach=detach, ports=[8080], host_config = cli.create_host_config(port_bindings={8080: 4567}))
 		cli.start(container=container.get('Id'))
 		obj = cli.containers(filters={'name':container_name}, all=True)
 		image_id = obj[0]['ImageID']
