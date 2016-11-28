@@ -6,6 +6,7 @@
 <link rel="stylesheet" href='{% static "css/view_style.css" %}'>
 	<ul>
   <li><a>Welcome {{user}}</a></li>
+  <li><a href='{% url "logout" %}'>Logout</a></li>
   </ul>
   <div class="form">
   <form action='{% url "all" %}' method="POST" name="form1">
@@ -17,10 +18,15 @@
 	{%csrf_token%}
 	<input value="Exited" type="Submit" name="exit">
 	</form>
-	<!-- <form action='{% url "running" %}' method="POST" name="form3"> -->
-	<!-- {%csrf_token%}
+	<form action='{% url "running" %}' method="POST" name="form3">
+	{%csrf_token%}
 	<input value="Running" type="Submit" name="run">
-</form> -->
+</form>
+
+	<form action='{% url "paused" %}' method="GET" name="form3">
+	{%csrf_token%}
+	<input value="Paused" type="Submit" name="paused">
+	</form>
 	<table>
 	
 		<tr>

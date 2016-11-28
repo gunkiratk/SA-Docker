@@ -1,43 +1,44 @@
 {% load staticfiles %}
 <html>
 <head>
-	<title>
-	</title>
+	<title>Run Container</title>
+	<link rel="stylesheet" href='{% static "css/run_style.css" %}' >
 </head>
+
 <body bgcolor="#C0C0C0">
 	<ul>
-  <li><a>Welcome {{user}}</a></li>
-  </ul>
+  		<li><a>Welcome {{user}}</a></li>
+  		<li><a class="logout" href='{% url "logout" %}'>Logout</a></li>
+  	</ul>
 	
-	<link rel="stylesheet" href='{% static "css/run_style.css" %}' >
 	<div class="center">
-	<div class="form1">
-	<form action="#" method="POST">
-	{% csrf_token %}		
-		<div class="input">
-	<br>
-	<h3>Conatiner Name</h3>
-	<input name="name" type="text"><br>
-	<h3>Image</h3>
-	<input name="image" type="text"><br><br>
-	<h3>Command</h3>
-	<h4>(if not mentioned in docker file)</h4>
-	<input name="command" type="text"><br>
-</div>
-<div class="submit">
-	<input name="Run" type="Submit" value="Run">
-	<br><br><br>
+		<div class="form1">
+			<form action="#" method="POST">
+				{% csrf_token %}		
+				<div class="input">
+					<br>
+					<h3>Conatiner Name</h3>
+					<input name="name" type="text"><br>
+					<h3>Image</h3>
+					<input name="image" type="text"><br><br>
+					<h3>Command</h3>
+					<h4>(if not mentioned in docker file)</h4>
+					<input name="command" type="text"><br>
+					<h3>Do you want to run this as a background process ? </h3>
+					<input type="radio" name="detatched" value=1> Yes <br>
+					<input type="radio" name="detatched" value=0 checked> No <br>
+				</div>
+				<div class="submit">
+					<input name="Run" type="Submit" value="Run">
+					<br><br><br>
+				{% if error %}
+					<p><strong>{{ error }}</strong></p>
+				{% endif %}
+				</div>
+			</form>
+		</div>
+	</div>
 
-</div>
 
-	{% if error %}
-	<p>{{ error }}</p>
-	{% endif %}
-
-
-
-</form>
-</div>
-</div>
 </body>
 </html>

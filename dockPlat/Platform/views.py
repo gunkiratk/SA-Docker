@@ -76,13 +76,14 @@ def view_exited(request):
 		exited_list.append(cli.containers(filters={'name':name, 'status':'exited'}))
 
 	for i in exited_list:
-		disp_dict = {}
-		disp_dict['Name'] = i[0]['Names'][0]
-		disp_dict['Status'] = i[0]['Status']
-		disp_dict['Command'] = i[0]['Command']
-		disp_dict['Ports'] = i[0]['Ports']
-		disp_dict['Image'] = i[0]['Image']
-		verbose_exited_list.append(disp_dict)
+		if i :
+			disp_dict = {}
+			disp_dict['Name'] = i[0]['Names'][0]
+			disp_dict['Status'] = i[0]['Status']
+			disp_dict['Command'] = i[0]['Command']
+			disp_dict['Ports'] = i[0]['Ports']
+			disp_dict['Image'] = i[0]['Image']
+			verbose_exited_list.append(disp_dict)
 
 	context = {'user':current_user.first_name, 'all':verbose_exited_list}
 
@@ -100,17 +101,43 @@ def view_running(request):
 		running_list.append(cli.containers(filters={'name':name, 'status':'running'}))
 
 	for i in running_list:
-		disp_dict = {}
-		disp_dict['Name'] = i[0]['Names'][0]
-		disp_dict['Status'] = i[0]['Status']
-		disp_dict['Command'] = i[0]['Command']
-		disp_dict['Ports'] = i[0]['Ports']
-		disp_dict['Image'] = i[0]['Image']
-		verbose_running_list.append(disp_dict)
+		if i :
+			disp_dict = {}
+			disp_dict['Name'] = i[0]['Names'][0]
+			disp_dict['Status'] = i[0]['Status']
+			disp_dict['Command'] = i[0]['Command']
+			disp_dict['Ports'] = i[0]['Ports']
+			disp_dict['Image'] = i[0]['Image']
+			verbose_running_list.append(disp_dict)
 
 	context = {'user':current_user.first_name, 'all':verbose_running_list}
 
 	return render(request, 'running.html', context)
+
+@login_required
+def view_paused(request):
+	current_user = User.objects.get(username__iexact=request.user)
+	current_containers_list = current_user.container_set.all()
+	paused_list = []
+	verbose_paused_list = []
+
+	for i in current_containers_list :
+		name = i.c_name
+		paused_list.append(cli.containers(filters={'name':name, 'status':'paused'}))
+
+	for i in paused_list:
+		if i :
+			disp_dict = {}
+			disp_dict['Name'] = i[0]['Names'][0]
+			disp_dict['Status'] = i[0]['Status']
+			disp_dict['Command'] = i[0]['Command']
+			disp_dict['Ports'] = i[0]['Ports']
+			disp_dict['Image'] = i[0]['Image']
+			verbose_paused_list.append(disp_dict)
+
+	context = {'user':current_user.first_name, 'all':verbose_paused_list}
+
+	return render(request, 'paused.html', context)
 
 def register_user(request):
 	error = None
@@ -134,7 +161,7 @@ def register_user(request):
 				last_name = name[1]
 				new_user.last_name = last_name
 			new_user.save()
-			return redirect('login_user')
+			return redirect('login')
 	return render(request, "register.html", {'error':error})
 
 @login_required
@@ -147,17 +174,22 @@ def logout_user(request):
 def run_container(request):
 	current_user = User.objects.get(username__iexact=request.user)
 	if request.method == 'POST' :
+		print (request.POST)
 		container_name = request.POST['name']
 		image_name = request.POST['image']
 		command = request.POST['command']
-
+		detach = request.POST['detatched']
+		if(detach == 1):
+			detach = True
+		else:
+			detach = False
 		container = None
 		error = None
 		# try:
 		if(command) :
-			container = cli.create_container(image=image_name, command=command, name=container_name)
+			container = cli.create_container(image=image_name, command=command, name=container_name, detach=detach)
 		else:
-			container = cli.create_container(image=image_name, name=container_name)
+			container = cli.create_container(image=image_name, name=container_name, detach=detach)
 		cli.start(container=container.get('Id'))
 		obj = cli.containers(filters={'name':container_name}, all=True)
 		image_id = obj[0]['ImageID']
@@ -170,6 +202,39 @@ def run_container(request):
 			# return render(request, 'run.html', {'error':error})
 
 	return render(request, 'run.html')
+
+
+@login_required	
+def manage_container(request):
+	current_user = User.objects.get(username__iexact=request.user)
+	current_containers_list = current_user.container_set.all()	
+	context = {'status':None, 'conList' : current_containers_list}
+	if request.method == 'POST':
+		container_name = request.POST['conSel']
+		getCon = cli.containers(filters={'name':container_name}, all=True)
+		if(getCon):
+			status = getCon[0]['Status']
+			con_Id = getCon[0]['Id']
+		if('start' in request.POST) : 
+			cli.start(container=con_Id)
+			return redirect("all")
+		elif('stop' in request.POST) :
+			cli.stop(container_name)
+			return redirect("all")
+		elif('pause' in request.POST) : 
+			cli.pause(container_name)
+			return redirect("all")
+		elif('unpause' in request.POST) :
+			cli.unpause(container_name)
+			return redirect("all")
+		elif('delete' in request.POST):
+			cli.remove_container(container_name)
+			con = Container.objects.get(c_name=container_name)
+			con.delete()
+			return redirect("all")
+		elif('status' in request.POST):
+			context['status'] = status
+	return render(request, 'manage.html', context)
 
 
 

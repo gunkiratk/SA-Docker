@@ -1,0 +1,47 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #191970;
+}
+
+li {
+    float: left;
+}
+.logout
+{
+    float:right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 23px 70px;
+    text-decoration: none;
+    font-size: 100px;
+}
+
+input[type=submit] {
+        color: #000;
+        background-color:#c2c2d5;
+        font-size: 20px;
+        height: 40px;
+        border: none;
+        text-align: center;
+        /*margin: 0 auto 0 17px;*/
+        padding: 30px 32px;
+        border-radius:0;
+        cursor: pointer;
+        margin-left: 7em ;
+    }
+input[type=submit]:hover {
+  background-color:#3f7ba2;
+
+}
+.form
+{
+       margin-left: 50em ;
+        margin-top: 10em;
+}

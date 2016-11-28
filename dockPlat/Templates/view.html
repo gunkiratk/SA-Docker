@@ -6,23 +6,31 @@
 <link rel="stylesheet" href='{% static "css/view_style.css" %}'>
 	<ul>
   <li><a>Welcome {{user}}</a></li>
+  <li><a href='{% url "logout" %}'>Logout</a></li>
   </ul>
+  
   <div class="form">
   <form action='{% url "all" %}' method="GET" name="form1">
 	{%csrf_token%}
 	<br>
 	<input value="All" type="Submit" name="All">
 	</form>
-<form action='{% url "exited" %}' method="GET" name="form2">
+
+	<form action='{% url "exited" %}' method="GET" name="form2">
 	{%csrf_token%}
 	<input value="Exited" type="Submit" name="exit">
 	</form>
 
-	<!-- <form action='{% url "running" %}' method="GET" name="form3">
+	<form action='{% url "running" %}' method="GET" name="form3">
 	{%csrf_token%}
-	<input value="Running" type="Submit" name="run"> -->
-<!-- </form> -->
+	<input value="Running" type="Submit" name="run">
 
+	</form>
+
+	<form action='{% url "paused" %}' method="GET" name="form4">
+		{%csrf_token%}
+		<input value="Paused" type="Submit" name="paused">
+	</form>
 </div>
 	</body>
 </html>

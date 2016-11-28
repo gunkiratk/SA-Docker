@@ -1,0 +1,37 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Manage Containers</title>
+	<link rel="stylesheet" href='{% static "css/home_style.css" %}'>
+</head>
+<body>
+	<ul>
+		<li><a>Welcome {{ user }}</a></li>
+		<li><a href='{% url "logout" %} '>Logout</a></li>
+	</ul>
+
+	<form action="#" method="POST" name='manCon'>
+		{% csrf_token %}
+		<label>Select Container</label>
+		<select name="conSel">
+			{% for i in conList %}
+				<option value="{{ i }}"> {{ i }}</option>
+			{% endfor %}
+		</select>
+  
+
+		<input type="submit" value="Start" name="start">
+		<input type="submit" value="Stop" name="stop">
+		<input type="submit" value="Pause" name="pause">
+		<input type="submit" value="Unpause" name="unpause">
+		<input type="submit" value="Status" name="status">
+		<input type="submit" value="Delete" name="delete">
+	</form>
+
+
+	{% if status %}
+	<br><br><p><strong>Status : {{ status }} </strong> </p>
+	{% endif %}
+</body>
+</html>

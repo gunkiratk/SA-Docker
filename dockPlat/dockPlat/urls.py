@@ -30,4 +30,6 @@ urlpatterns=[
 	url(r'^docker/dashboard/view/all/$',views.view_all,name='all'),
 	url(r'^docker/dashboard/view/exited/$',views.view_exited,name='exited'),
 	url(r'^docker/dashboard/view/running/$',views.view_running,name='running'),
+	url(r'^docker/dashboard/view/paused/$',views.view_paused,name='paused'),
+	url(r'^docker/dashboard/manage$$',views.manage_container,name='manage'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
